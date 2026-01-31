@@ -29,15 +29,19 @@ func _ready() -> void:
 	player.mask_level_change.connect(_on_mask_level_changed)
 	player.mask_index_change.connect(_on_mask_index_changed)
 
+# i hate those boilerpaltes btw
 func _input(event: InputEvent) -> void:
 	if event.is_echo():
 		return
 	if event.is_action_pressed("rock"):
 		mask_pressed($Rocks, true)
+		rotate_masks(player.MaskType.ROCK)
 	elif event.is_action_pressed("paper"):
 		mask_pressed($Papers, true)
+		rotate_masks(player.MaskType.PAPER)
 	elif event.is_action_pressed("scissor"):
 		mask_pressed($Scissors, true)
+		rotate_masks(player.MaskType.SCISSOR)
 	elif event.is_action_released("rock"):
 		mask_pressed($Rocks, false)
 	elif event.is_action_released("paper"):
@@ -52,6 +56,23 @@ func mask_pressed(mask: Node2D, is_down: bool):
 	else:
 		mask.position.x -= 20
 		mask.position.y -= 20
+
+func rotate_masks(mask_type : int):
+	match mask_type:
+		player.MaskType.ROCK:
+			$Rocks.rotation = PI / 4
+			$Papers.rotation = 0
+			$Scissors.rotation = 0
+		player.MaskType.PAPER:
+			$Rocks.rotation = 0
+			$Papers.rotation = PI / 4
+			$Scissors.rotation = 0
+		player.MaskType.SCISSOR:
+			$Rocks.rotation = 0
+			$Papers.rotation = 0
+			$Scissors.rotation = PI / 4
+
+
 
 func update_mask_sprites():
 	return
