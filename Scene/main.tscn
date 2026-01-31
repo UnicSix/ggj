@@ -12,9 +12,10 @@ script = ExtResource("1_r34rm")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=749303505]
 texture = ExtResource("2_3amdw")
 
-[node name="Enemy" parent="." unique_id=860798441 node_paths=PackedStringArray("player") instance=ExtResource("2_2wwxx")]
+[node name="Enemy" parent="." unique_id=860798441 node_paths=PackedStringArray("player", "camera") instance=ExtResource("2_2wwxx")]
 position = Vector2(921, 401)
 player = NodePath("../PurplePlayer")
+camera = NodePath("../PlayerCamera")
 
 [node name="PurplePlayer" parent="." unique_id=2004158064 instance=ExtResource("3_3amdw")]
 

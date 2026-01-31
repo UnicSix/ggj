@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://doqoypehx8n33"]
+
+[ext_resource type="Texture2D" uid="uid://dwoa5grfn84ta" path="res://Sprite/XP.jpg" id="1_7ap1n"]
+
+[node name="Map" type="Node2D" unique_id=255836063]
+
+[node name="background" type="Sprite2D" parent="." unique_id=2052359151]
+texture = ExtResource("1_7ap1n")
