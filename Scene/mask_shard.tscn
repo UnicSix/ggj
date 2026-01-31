@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://vfk5d2ssi4xj"]
 
 [ext_resource type="Script" uid="uid://c1g45mylsn4gv" path="res://Script/mask_shard.gd" id="1_luf5k"]
-[ext_resource type="Texture2D" uid="uid://ws4jxyg3q5fj" path="res://Sprite/shape/PNG/Default/tile_coin.png" id="1_nsxel"]
+[ext_resource type="Texture2D" uid="uid://dxqb6pi7v5msm" path="res://Sprite/shape/PNG/Double/tile_coin.png" id="2_luf5k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nsxel"]
 
-[node name="MaskShard" type="Area2D" unique_id=970542240]
+[node name="MaskShard" type="Area2D" unique_id=970542240 groups=["Shard"]]
 script = ExtResource("1_luf5k")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1118937288]
-texture = ExtResource("1_nsxel")
+texture = ExtResource("2_luf5k")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=756837908]
-scale = Vector2(2.7, 2.7)
+scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_nsxel")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

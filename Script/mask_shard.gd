@@ -1,16 +1,18 @@
 extends Area2D
 
+var shard_type : int = Player.MaskType.ROCK
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
 
+func _process(_delta: float) -> void:
+	pass
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		$Sprite.visible = false
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Player"):
+		print("Player picked uppppppp")
+		call_deferred("disable_shard")
+
+func disable_shard():
+	$Sprite.visible = false
+	$Collider.disabled = true
