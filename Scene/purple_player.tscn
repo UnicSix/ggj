@@ -3,8 +3,16 @@
 [ext_resource type="Script" uid="uid://cptje7u516e1k" path="res://Script/purple_player.gd" id="1_5t86d"]
 [ext_resource type="Texture2D" uid="uid://d4gy8x2k5456n" path="res://Sprite/purple.png" id="2_po13w"]
 
-[node name="PurplePlayer" type="Node2D" unique_id=2004158064]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5t86d"]
+size = Vector2(20, 30.195599)
+
+[node name="PurplePlayer" type="Area2D" unique_id=1950282287]
 script = ExtResource("1_5t86d")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1671444916]
 texture = ExtResource("2_po13w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1541906143]
+position = Vector2(0, 15.499997)
+scale = Vector2(8.18, 8.18)
+shape = SubResource("RectangleShape2D_5t86d")
