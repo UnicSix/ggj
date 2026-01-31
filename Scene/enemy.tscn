@@ -1,34 +1,110 @@
 [gd_scene format=3 uid="uid://b3tq3ap0g56cf"]
 
 [ext_resource type="Script" uid="uid://bak41jwwdy122" path="res://Script/minion.gd" id="1_hti8k"]
-[ext_resource type="Texture2D" uid="uid://6e28utbawdka" path="res://Sprite/shape/PNG/Default/purple_body_circle.png" id="2_44hyy"]
+[ext_resource type="Texture2D" uid="uid://pkelobr63khc" path="res://Sprite/child_lv1.png" id="2_hti8k"]
 [ext_resource type="Texture2D" uid="uid://dxqb6pi7v5msm" path="res://Sprite/shape/PNG/Double/tile_coin.png" id="2_mbhhd"]
 [ext_resource type="Texture2D" uid="uid://bckuv3l4ioksv" path="res://Sprite/shape/PNG/Default/blue_body_circle.png" id="3_0qcj2"]
 [ext_resource type="Texture2D" uid="uid://bop74fly0vdb8" path="res://Sprite/shape/PNG/Double/face_a.png" id="3_bebg8"]
 [ext_resource type="Texture2D" uid="uid://bxicu3utdfkji" path="res://Sprite/shape/PNG/Default/red_body_circle.png" id="4_5op34"]
+[ext_resource type="Texture2D" uid="uid://bqnngiw6pkwdl" path="res://Sprite/child_lv2_sheet.png" id="7_44hyy"]
 
-[node name="minion" type="Node2D" unique_id=860798441]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hti8k"]
+size = Vector2(106, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qcj2"]
+atlas = ExtResource("7_44hyy")
+region = Rect2(0, 0, 340, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5op34"]
+atlas = ExtResource("7_44hyy")
+region = Rect2(340, 0, 340, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6llc"]
+atlas = ExtResource("7_44hyy")
+region = Rect2(680, 0, 340, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00taw"]
+atlas = ExtResource("7_44hyy")
+region = Rect2(1020, 0, 340, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgux2"]
+atlas = ExtResource("7_44hyy")
+region = Rect2(1360, 0, 340, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3ffy"]
+atlas = ExtResource("7_44hyy")
+region = Rect2(1700, 0, 340, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jr7y"]
+atlas = ExtResource("7_44hyy")
+region = Rect2(2040, 0, 340, 380)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_myw4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qcj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5op34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6llc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00taw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgux2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3ffy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jr7y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="minion" type="Area2D" unique_id=165780709]
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_hti8k")
 
 [node name="RockMask" type="Node2D" parent="." unique_id=897119305]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="RockMask" unique_id=55850369]
-texture = ExtResource("2_44hyy")
+visible = false
+texture = ExtResource("2_hti8k")
 
 [node name="ScissorMask" type="Node2D" parent="." unique_id=714261158]
 
 [node name="Sprite2D" type="Sprite2D" parent="ScissorMask" unique_id=811053119]
+visible = false
 texture = ExtResource("3_0qcj2")
 
 [node name="PaperMask" type="Node2D" parent="." unique_id=1878289568]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="PaperMask" unique_id=965690907]
 texture = ExtResource("4_5op34")
 
 [node name="BaseMask" type="Node2D" parent="." unique_id=160593572]
+visible = false
 
 [node name="Body" type="Sprite2D" parent="BaseMask" unique_id=1141819971]
 texture = ExtResource("2_mbhhd")
 
 [node name="Face" type="Sprite2D" parent="BaseMask" unique_id=256596520]
 texture = ExtResource("3_bebg8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1018162466]
+position = Vector2(1, -2.5)
+shape = SubResource("RectangleShape2D_hti8k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=721508519]
+sprite_frames = SubResource("SpriteFrames_myw4n")
+autoplay = "default"
+frame_progress = 0.4825964

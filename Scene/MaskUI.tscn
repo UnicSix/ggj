@@ -26,7 +26,7 @@ texture = ExtResource("3_0uwo4")
 texture = ExtResource("4_phsss")
 
 [node name="Papers" type="Node2D" parent="." unique_id=2141028658]
-position = Vector2(450, 0)
+position = Vector2(250, -433)
 
 [node name="Paper" type="Sprite2D" parent="Papers" unique_id=2048512038]
 texture = ExtResource("5_fgmrw")
@@ -38,7 +38,7 @@ texture = ExtResource("6_y52bl")
 texture = ExtResource("7_7x5wb")
 
 [node name="Scissors" type="Node2D" parent="." unique_id=704271685]
-position = Vector2(900, 0)
+position = Vector2(500, 0)
 
 [node name="Scissor" type="Sprite2D" parent="Scissors" unique_id=750751188]
 texture = ExtResource("8_3cwsi")

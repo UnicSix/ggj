@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bt7ktg3qqg1iu" path="res://Script/scene.gd" id="1_r34rm"]
 [ext_resource type="PackedScene" uid="uid://b3tq3ap0g56cf" path="res://Scene/enemy.tscn" id="2_2wwxx"]
-[ext_resource type="Texture2D" uid="uid://dwoa5grfn84ta" path="res://Sprite/XP.jpg" id="2_3amdw"]
+[ext_resource type="Texture2D" uid="uid://cejjrsvaa2pup" path="res://Sprite/background.png" id="2_75buv"]
 [ext_resource type="PackedScene" uid="uid://dwluie4qp1k63" path="res://Scene/purple_player.tscn" id="3_3amdw"]
+[ext_resource type="PackedScene" uid="uid://vfk5d2ssi4xj" path="res://Scene/mask_shard.tscn" id="3_75buv"]
 [ext_resource type="Script" uid="uid://biqdq3y0ymdbb" path="res://Script/player_camera.gd" id="4_2wwxx"]
 [ext_resource type="PackedScene" uid="uid://b8uquywpquspx" path="res://Scene/MaskUI.tscn" id="6_1xcnr"]
 [ext_resource type="AudioStream" uid="uid://eaure1bqlrt8" path="res://Audio/bgm1.mp3" id="7_ow1sv"]
@@ -11,8 +12,10 @@
 [node name="Scene" type="Node2D" unique_id=699518558]
 script = ExtResource("1_r34rm")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=749303505]
-texture = ExtResource("2_3amdw")
+[node name="Background" type="Sprite2D" parent="." unique_id=749303505]
+texture = ExtResource("2_75buv")
+
+[node name="MaskShard" parent="." unique_id=970542240 instance=ExtResource("3_75buv")]
 
 [node name="Enemy" parent="." unique_id=860798441 node_paths=PackedStringArray("player", "camera") instance=ExtResource("2_2wwxx")]
 position = Vector2(921, 401)
@@ -20,6 +23,8 @@ player = NodePath("../PurplePlayer")
 camera = NodePath("../PlayerCamera")
 
 [node name="PurplePlayer" parent="." unique_id=2004158064 instance=ExtResource("3_3amdw")]
+position = Vector2(261, 98)
+scale = Vector2(0.8, 0.8)
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1665085562 node_paths=PackedStringArray("player")]
 script = ExtResource("4_2wwxx")
@@ -32,3 +37,8 @@ player = NodePath("../../PurplePlayer")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=268201609]
 stream = ExtResource("7_ow1sv")
+
+[node name="EnemySpawnTimer" type="Timer" parent="." unique_id=342628695]
+
+[connection signal="area_exited" from="MaskShard" to="." method="_on_mask_shard_area_exited"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
