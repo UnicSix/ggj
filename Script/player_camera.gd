@@ -4,12 +4,15 @@ extends Camera2D
 
 const view_constraint : float = 200.0
 var prev_player_pos : Vector2
+var snap_speed : float = 5
 
 func _ready() -> void:
 	prev_player_pos = player.position
 	position = player.position
 
 func _physics_process(_delta: float) -> void:
+	if prev_player_pos == player.position:
+		position = position.lerp(player.position, _delta * snap_speed)
 	var distance : float = position.distance_to(player.position)
 	if distance > view_constraint:
 		var direction = (player.position - position).normalized()
