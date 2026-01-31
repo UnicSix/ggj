@@ -1,3 +1,51 @@
 [gd_scene format=3 uid="uid://b8uquywpquspx"]
 
+[ext_resource type="Script" uid="uid://drljo5n4d5pq7" path="res://Script/mask_ui.gd" id="1_gvxmt"]
+[ext_resource type="Texture2D" uid="uid://m14kambpjvv0" path="res://Sprite/UI/UI_GMask1.png" id="2_vdi4w"]
+[ext_resource type="Texture2D" uid="uid://u6hd1ee7vwc4" path="res://Sprite/UI/UI_GMask2.png" id="3_0uwo4"]
+[ext_resource type="Texture2D" uid="uid://d2l2u2d52qref" path="res://Sprite/UI/UI_GMask3.png" id="4_phsss"]
+[ext_resource type="Texture2D" uid="uid://dta45u5apkr3g" path="res://Sprite/UI/UI_PMask1.png" id="5_fgmrw"]
+[ext_resource type="Texture2D" uid="uid://e74kt0w1c583" path="res://Sprite/UI/UI_PMask2.png" id="6_y52bl"]
+[ext_resource type="Texture2D" uid="uid://d24fmx8vx8kf" path="res://Sprite/UI/UI_PMask3.png" id="7_7x5wb"]
+[ext_resource type="Texture2D" uid="uid://dmtt54l3055y" path="res://Sprite/UI/UI_YMask1.png" id="8_3cwsi"]
+[ext_resource type="Texture2D" uid="uid://bqm70e60a8mkg" path="res://Sprite/UI/UI_YMask2.png" id="9_b3h46"]
+[ext_resource type="Texture2D" uid="uid://d06fkxvmjhmlr" path="res://Sprite/UI/UI_YMask3.png" id="10_l3u2o"]
+
 [node name="MaskUi" type="Node2D" unique_id=242306351]
+script = ExtResource("1_gvxmt")
+
+[node name="Rocks" type="Node2D" parent="." unique_id=1705619298]
+
+[node name="Rock" type="Sprite2D" parent="Rocks" unique_id=217066216]
+texture = ExtResource("2_vdi4w")
+
+[node name="Rock2" type="Sprite2D" parent="Rocks" unique_id=1409613499]
+texture = ExtResource("3_0uwo4")
+
+[node name="Rock3" type="Sprite2D" parent="Rocks" unique_id=269499573]
+texture = ExtResource("4_phsss")
+
+[node name="Papers" type="Node2D" parent="." unique_id=2141028658]
+position = Vector2(450, 0)
+
+[node name="Paper" type="Sprite2D" parent="Papers" unique_id=2048512038]
+texture = ExtResource("5_fgmrw")
+
+[node name="Paper2" type="Sprite2D" parent="Papers" unique_id=1603082595]
+texture = ExtResource("6_y52bl")
+
+[node name="Paper3" type="Sprite2D" parent="Papers" unique_id=483482303]
+texture = ExtResource("7_7x5wb")
+
+[node name="Scissors" type="Node2D" parent="." unique_id=704271685]
+position = Vector2(900, 0)
+
+[node name="Scissor" type="Sprite2D" parent="Scissors" unique_id=750751188]
+texture = ExtResource("8_3cwsi")
+
+[node name="Scissor2" type="Sprite2D" parent="Scissors" unique_id=657492754]
+texture = ExtResource("9_b3h46")
+
+[node name="Scissor3" type="Sprite2D" parent="Scissors" unique_id=356886761]
+position = Vector2(0.88, 0)
+texture = ExtResource("10_l3u2o")
