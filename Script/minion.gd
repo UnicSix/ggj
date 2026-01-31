@@ -15,6 +15,7 @@ const strafe_scaler : float = 10
 var delta_pos : Vector2 = Vector2(0,0)
 var next_random_delta_pos : Vector2 = Vector2(0,0)
 var action_cooldown_timer : float = 0
+var enable : bool = true
 
 func _ready() -> void:
 	# set movement constraint
@@ -71,7 +72,6 @@ func chase_player(scaler : float):
 		print("Delta pos chase ", delta_pos)
 	return
 
-
 func update_bounds():
 	var viewport_size = get_viewport_rect().size
 	var cam_pos = camera.global_position
@@ -97,6 +97,8 @@ func position_valid(pos: Vector2) -> bool:
 	return true
 
 func _physics_process(_delta: float) -> void:
+	if enable == false:
+		return
 	print("State", state)
 	print("Cooler", action_cooldown_timer)
 	update_bounds()
@@ -131,3 +133,17 @@ func _physics_process(_delta: float) -> void:
 		print("State ", state)
 		state = MinionState.CHASE
 	position += delta_pos
+
+func disable_enemy() -> void:
+	visible = false
+	call_deferred("defer_disable")
+
+func defer_disable() -> void:
+	$CollisionShape2D.disabled = true
+
+func enable_enemy() -> void:
+	visible = true
+	call_deferred("defer_enable")
+
+func defer_enable() -> void:
+	$CollisionShape2D.disabled = false
