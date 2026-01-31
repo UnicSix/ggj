@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b3tq3ap0g56cf"]
+
+[ext_resource type="Script" uid="uid://bak41jwwdy122" path="res://Script/minion.gd" id="1_hti8k"]
+[ext_resource type="Texture2D" uid="uid://6e28utbawdka" path="res://Sprite/shape/PNG/Default/purple_body_circle.png" id="2_44hyy"]
+[ext_resource type="Texture2D" uid="uid://dxqb6pi7v5msm" path="res://Sprite/shape/PNG/Double/tile_coin.png" id="2_mbhhd"]
+[ext_resource type="Texture2D" uid="uid://bckuv3l4ioksv" path="res://Sprite/shape/PNG/Default/blue_body_circle.png" id="3_0qcj2"]
+[ext_resource type="Texture2D" uid="uid://bop74fly0vdb8" path="res://Sprite/shape/PNG/Double/face_a.png" id="3_bebg8"]
+[ext_resource type="Texture2D" uid="uid://bxicu3utdfkji" path="res://Sprite/shape/PNG/Default/red_body_circle.png" id="4_5op34"]
+
+[node name="minion" type="Node2D" unique_id=860798441]
+script = ExtResource("1_hti8k")
+
+[node name="RockMask" type="Node2D" parent="." unique_id=897119305]
+
+[node name="Sprite2D" type="Sprite2D" parent="RockMask" unique_id=55850369]
+texture = ExtResource("2_44hyy")
+
+[node name="ScissorMask" type="Node2D" parent="." unique_id=714261158]
+
+[node name="Sprite2D" type="Sprite2D" parent="ScissorMask" unique_id=811053119]
+texture = ExtResource("3_0qcj2")
+
+[node name="PaperMask" type="Node2D" parent="." unique_id=1878289568]
+
+[node name="Sprite2D" type="Sprite2D" parent="PaperMask" unique_id=965690907]
+texture = ExtResource("4_5op34")
+
+[node name="BaseMask" type="Node2D" parent="." unique_id=160593572]
+
+[node name="Body" type="Sprite2D" parent="BaseMask" unique_id=1141819971]
+texture = ExtResource("2_mbhhd")
+
+[node name="Face" type="Sprite2D" parent="BaseMask" unique_id=256596520]
+texture = ExtResource("3_bebg8")

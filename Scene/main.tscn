@@ -1,11 +1,23 @@
 [gd_scene format=3 uid="uid://dshl7yvb4yh81"]
 
-[ext_resource type="Texture2D" uid="uid://1xatj8l13olm" path="res://icon.svg" id="1_f6udf"]
-[ext_resource type="Script" uid="uid://dxvaig8wxp4ro" path="res://Script/main.gd" id="2_sblpm"]
+[ext_resource type="Script" uid="uid://bt7ktg3qqg1iu" path="res://Script/scene.gd" id="1_r34rm"]
+[ext_resource type="PackedScene" uid="uid://b3tq3ap0g56cf" path="res://Scene/enemy.tscn" id="2_2wwxx"]
+[ext_resource type="Texture2D" uid="uid://dwoa5grfn84ta" path="res://Sprite/XP.jpg" id="2_3amdw"]
+[ext_resource type="PackedScene" uid="uid://dwluie4qp1k63" path="res://Scene/purple_player.tscn" id="3_3amdw"]
+[ext_resource type="Script" uid="uid://biqdq3y0ymdbb" path="res://Script/player_camera.gd" id="4_2wwxx"]
 
-[node name="Node2D" type="Node2D" unique_id=699518558]
+[node name="Scene" type="Node2D" unique_id=699518558]
+script = ExtResource("1_r34rm")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=829271511]
-position = Vector2(276, 214)
-texture = ExtResource("1_f6udf")
-script = ExtResource("2_sblpm")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=749303505]
+texture = ExtResource("2_3amdw")
+
+[node name="Enemy" parent="." unique_id=860798441 node_paths=PackedStringArray("player") instance=ExtResource("2_2wwxx")]
+position = Vector2(921, 401)
+player = NodePath("../PurplePlayer")
+
+[node name="PurplePlayer" parent="." unique_id=2004158064 instance=ExtResource("3_3amdw")]
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1665085562 node_paths=PackedStringArray("player")]
+script = ExtResource("4_2wwxx")
+player = NodePath("../PurplePlayer")
