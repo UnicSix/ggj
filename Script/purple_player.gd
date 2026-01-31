@@ -1,3 +1,4 @@
+class_name Player
 extends Node2D
 
 signal mask_level_change(level: int, mask_type: int)
@@ -30,10 +31,11 @@ func _input(event: InputEvent) -> void:
 		print("Signal Pressed Scissor")
 		chosen_mask = MaskType.SCISSOR
 		mask_index_change.emit(chosen_mask)
-	if event.is_action_pressed("ui_accept"):
-		if mask_level[chosen_mask]+1 < MAX_LEVEL:
-			mask_level[chosen_mask] += 1
-		mask_level_change.emit(mask_level[chosen_mask], chosen_mask)
+	# trigger level-up event with other condition
+	# if event.is_action_pressed("ui_accept"):
+	# 	if mask_level[chosen_mask]+1 < MAX_LEVEL:
+	# 		mask_level[chosen_mask] += 1
+	# 	mask_level_change.emit(mask_level[chosen_mask], chosen_mask)
 
 func player_input() -> Vector2:
 	var direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
@@ -41,3 +43,14 @@ func player_input() -> Vector2:
 	
 func _physics_process(delta: float) -> void:
 	position += player_input() * delta
+
+
+func _on_area_entered(_area: Area2D) -> void:
+	if _area.is_in_group("Shard"):
+		# distinguish the shard type
+		if _area.shard_type == MaskType.ROCK :
+			print("ROCK SHARDDDDDDDD")
+		elif _area.shard_type == MaskType.PAPER :
+			print("PAPER SHARDDDDDDDD")
+		elif _area.shard_type == MaskType.SCISSOR :
+			print("SCISSOR SHARDDDDDDDD")
