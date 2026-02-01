@@ -43,6 +43,11 @@ func _ready() -> void:
 		add_child(new_enemy)
 
 	$EnemySpawnTimer.start()
+	$PurplePlayer.connect("player_dead", _on_player_dead)
+
+func _on_player_dead(is_dead: bool):
+	if is_dead:
+		get_tree().change_scene_to_file("res://Scene/lose_scene.tscn")
 
 func _physics_process(_delta: float) -> void:
 	pass

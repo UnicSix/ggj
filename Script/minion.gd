@@ -136,6 +136,7 @@ func defer_disable() -> void:
 
 func enable_enemy() -> void:
 	print("Enabled enemy")
+	$Animation.flip_h = delta_pos.x < 0
 	visible = true
 	enable = true
 	call_deferred("defer_enable")
@@ -186,6 +187,7 @@ func redraw_enemy(level_change: bool = false) -> void:
 func _on_enemy_combat_result(result: Player.CombatResult, target: Node2D) -> void:
 	if target != self:
 		return
+	toggle_mask_display(true)
 	call_deferred("defer_disable")
 	match result:
 		Player.CombatResult.LOSE:
@@ -214,10 +216,10 @@ func _on_enemy_combat_result(result: Player.CombatResult, target: Node2D) -> voi
 				redraw_enemy()
 		_:
 			pass
-	toggle_mask_display(false)
 	state = MinionState.RANDOM
 	call_deferred("defer_disable")
 	$CombatCooler.start()
+	toggle_mask_display(false)
 
 func _on_combat_cooler_timeout() -> void:
 	if enable:

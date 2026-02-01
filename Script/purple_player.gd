@@ -4,6 +4,7 @@ extends Node2D
 signal mask_level_change(level: int, mask_type: int)
 signal mask_index_change(index: int)
 signal enemy_combat_result(result: CombatResult, tartet: Node2D)
+signal player_dead(is_dead: bool)
 
 enum MaskType {ROCK, PAPER, SCISSOR, NONE}
 enum CombatResult {WIN, LOSE, DRAW}
@@ -12,6 +13,7 @@ enum MaskCounter {WIN, LOSE, DRAW}
 var velocity : float = 500
 var chosen_mask : MaskType = MaskType.ROCK
 var mask_level : Array[int] = [0, 0, 0]
+var health : int = 10
 const MASK_COUNT : int = 3
 const MAX_LEVEL : int = 3
 
@@ -47,7 +49,11 @@ func player_input() -> Vector2:
 func _physics_process(delta: float) -> void:
 	if $CollisionShape2D.disabled:
 		return
-	position += player_input() * delta
+	var delta_pos = player_input() * delta
+	position += delta_pos
+	$AnimatedSprite2D.flip_h = delta_pos.x < 0
+	if health <= 0:
+		player_dead.emit(true)
 
 func _on_area_entered(_area: Area2D) -> void:
 	if _area.is_in_group("Shard"):
@@ -126,6 +132,12 @@ func combat(_mask : int, _level : int) -> CombatResult:
 			combat_result = CombatResult.LOSE
 		else:
 			combat_result = CombatResult.DRAW
+	if combat_result == CombatResult.WIN:
+		var new_level = mask_level[chosen_mask] + 1
+		if new_level > 2: new_level = 2
+		mask_level_change.emit(new_level, chosen_mask)
+	elif combat_result == CombatResult.LOSE:
+		health -= 1
 
 	return combat_result
 

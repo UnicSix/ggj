@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://d1ojm4any4huc"]
+
+[ext_resource type="Script" uid="uid://bj6kkk0n75t45" path="res://Script/lose_scene.gd" id="1_i2s3g"]
+[ext_resource type="Texture2D" uid="uid://btl48738rkxpo" path="res://Sprite/player_lose.png" id="1_tjl67"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2s3g"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(0, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgg6y"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(267, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ysfq"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(534, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfeph"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(801, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12sku"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(1068, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w56jd"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(1335, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bksci"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(1602, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2kcy"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(1869, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no337"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(2136, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwjj2"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(2403, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sne7v"]
+atlas = ExtResource("1_tjl67")
+region = Rect2(2670, 0, 267, 369)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1x3vq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2s3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgg6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ysfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfeph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12sku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w56jd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bksci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2kcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no337")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwjj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sne7v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LoseScene" type="Node2D" unique_id=1516174300]
+script = ExtResource("1_i2s3g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=114074111]
+sprite_frames = SubResource("SpriteFrames_1x3vq")
+autoplay = "default"
+frame_progress = 0.6410092
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1193778762]
