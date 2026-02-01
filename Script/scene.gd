@@ -29,10 +29,11 @@ func _ready() -> void:
 		add_child(new_shard)
 
 	var spawn_count : int = enemy_pool.size
-	for i in range(enemy_pool.capacity):
+	for i in range(enemy_pool.capacity+1):
+		print("Spawn ", i, " enemies")
 		var new_enemy = enemy.instantiate()
 		var rad = randf_range(0, PI*2)
-		new_enemy.position = $PurplePlayer.position + Vector2(cos(rad), sin(rad)) * randi_range(100, 150)
+		new_enemy.position = $PurplePlayer.position + Vector2(cos(rad), sin(rad)) * randi_range(300, 550)
 		if spawn_count == 0:
 			new_enemy.call_deferred("disable_enemy")
 		else:
@@ -41,14 +42,14 @@ func _ready() -> void:
 		enemy_pool.enemies.append(new_enemy)
 		add_child(new_enemy)
 
-	# $EnemySpawnTimer.start()
+	$EnemySpawnTimer.start()
 
 func _physics_process(_delta: float) -> void:
 	pass
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	if enemy_pool.size < enemy_pool.capacity:
-		print("Spawn enemy")
+		print("Spawn enemy", enemy_pool.size)
 		enemy_pool.size += 1
 		enemy_pool.enemies.get(enemy_pool.size).enable_enemy()
 

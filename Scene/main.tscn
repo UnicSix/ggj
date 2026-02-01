@@ -15,6 +15,7 @@ script = ExtResource("1_r34rm")
 texture = ExtResource("2_75buv")
 
 [node name="MaskShard" parent="." unique_id=970542240 instance=ExtResource("3_75buv")]
+visible = false
 
 [node name="PurplePlayer" parent="." unique_id=2004158064 instance=ExtResource("3_3amdw")]
 position = Vector2(261, 98)
