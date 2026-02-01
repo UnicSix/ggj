@@ -19,10 +19,16 @@ func _ready() -> void:
 	qubtn.mouse_entered.connect(_on_button_hover.bind(qubtn))
 	qubtn.mouse_exited.connect(_on_button_exit.bind(qubtn))
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		get_tree().change_scene_to_file("res://Scene/main.tscn")
+	elif event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
 
-func _process(delta: float) -> void:
+
+
+func _process(_delta: float) -> void:
 	pass
-
 
 # Hover 放大
 func _on_button_hover(button):
@@ -40,8 +46,6 @@ func _on_button_exit(button):
 	var tween = create_tween()
 	tween.tween_property(button, "scale", normal_scale, 0.15)
 
-
-# 你原本的功能保留
 func _on_qu_btn_button_down() -> void:
 	get_tree().quit()
 

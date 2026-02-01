@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dmtt54l3055y" path="res://Sprite/UI/UI_YMask1.png" id="8_3cwsi"]
 [ext_resource type="Texture2D" uid="uid://bqm70e60a8mkg" path="res://Sprite/UI/UI_YMask2.png" id="9_b3h46"]
 [ext_resource type="Texture2D" uid="uid://d06fkxvmjhmlr" path="res://Sprite/UI/UI_YMask3.png" id="10_l3u2o"]
+[ext_resource type="Texture2D" uid="uid://du0fg62a1avjh" path="res://Sprite/UI/UI_gentle.png" id="11_0uwo4"]
 
 [node name="MaskUi" type="Node2D" unique_id=242306351]
 script = ExtResource("1_gvxmt")
@@ -49,3 +50,23 @@ texture = ExtResource("9_b3h46")
 [node name="Scissor3" type="Sprite2D" parent="Scissors" unique_id=356886761]
 position = Vector2(0.88, 0)
 texture = ExtResource("10_l3u2o")
+
+[node name="Arrows" type="Node2D" parent="." unique_id=285590092]
+position = Vector2(0, -80)
+
+[node name="Arrow" type="Sprite2D" parent="Arrows" unique_id=1172610504]
+position = Vector2(30, -200)
+rotation = 4.1887903
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_0uwo4")
+
+[node name="Arrow2" type="Sprite2D" parent="Arrows" unique_id=1726260574]
+position = Vector2(250, 181.05)
+rotation = 2.0943952
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_0uwo4")
+
+[node name="Arrow3" type="Sprite2D" parent="Arrows" unique_id=2043704200]
+position = Vector2(470, -200)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_0uwo4")

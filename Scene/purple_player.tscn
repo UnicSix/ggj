@@ -2,18 +2,135 @@
 
 [ext_resource type="Script" uid="uid://cptje7u516e1k" path="res://Script/purple_player.gd" id="1_5t86d"]
 [ext_resource type="Texture2D" uid="uid://bqh3prmx4owii" path="res://Sprite/player.png" id="2_5t86d"]
+[ext_resource type="Texture2D" uid="uid://btl48738rkxpo" path="res://Sprite/player_lose.png" id="3_p2pd3"]
+[ext_resource type="Texture2D" uid="uid://b7ndk2spjcgfy" path="res://Sprite/player_lose_sit.png" id="4_856vn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5j2m"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(0, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx45g"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(267, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk823"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(534, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjkuc"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(801, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5whcx"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(1068, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxm2c"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(1335, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avttj"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(1602, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfldi"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(1869, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e54co"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(2136, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn6fr"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(2403, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aknth"]
+atlas = ExtResource("3_p2pd3")
+region = Rect2(2670, 0, 267, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hylnm"]
+atlas = ExtResource("2_5t86d")
+region = Rect2(0, 0, 204, 339)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dftlj"]
+atlas = ExtResource("4_856vn")
+region = Rect2(0, 0, 267, 369)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3toa2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5j2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx45g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk823")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjkuc")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_5whcx")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_hxm2c")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_avttj")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_cfldi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e54co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn6fr")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_aknth")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hylnm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dftlj")
+}],
+"loop": false,
+"name": &"lose",
+"speed": 2.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5t86d"]
-size = Vector2(24.816624, 43.031784)
+size = Vector2(11.98044, 34.10758)
 
 [node name="PurplePlayer" type="Area2D" unique_id=1950282287 groups=["Player"]]
 script = ExtResource("1_5t86d")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1671444916]
+visible = false
 texture = ExtResource("2_5t86d")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=274855549]
+sprite_frames = SubResource("SpriteFrames_3toa2")
+animation = &"lose"
+autoplay = "default"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1541906143]
-position = Vector2(0.49999952, -4.9999943)
+position = Vector2(16, -2)
 scale = Vector2(8.18, 8.18)
 shape = SubResource("RectangleShape2D_5t86d")
 
