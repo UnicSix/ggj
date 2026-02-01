@@ -102,16 +102,15 @@ func _physics_process(_delta: float) -> void:
 		MinionState.IDLE:
 			pass
 		MinionState.CHASE:
-			chase_player(randf_range(30,50))
+			chase_player(randf_range(100,200))
 
 	if action_cooldown_timer > 0:
 		action_cooldown_timer -= _delta
 	else:
-		var chase_rate: int = 70
+		var chase_rate: int = 50
 		match state:
 			MinionState.RANDOM:
 				var next_move : int = randi_range(0, 100)
-				# print("Next move: ", next_move)
 				if next_move > chase_rate:
 					state = MinionState.CHASE
 				action_cooldown_timer = randf_range(1.5, 5.0)
@@ -121,7 +120,6 @@ func _physics_process(_delta: float) -> void:
 
 	if !position_valid(position + delta_pos):
 		# print("invalid position!!!")
-		print("State ", state)
 		state = MinionState.CHASE
 	position += delta_pos
 	$Animation.flip_h = delta_pos.x < 0
@@ -146,8 +144,10 @@ func defer_enable() -> void:
 	$Collider.disabled = false
 
 func _on_area_entered(_area: Area2D) -> void:
-	toggle_mask_display(true)
-	redraw_enemy()
+	if !$Collider.disabled && _area.is_in_group("Player"):
+		print("Area entered")
+		toggle_mask_display(true)
+		redraw_enemy(false)
 
 func toggle_mask_display(on: bool) -> void:
 	if on:
@@ -155,11 +155,13 @@ func toggle_mask_display(on: bool) -> void:
 		mask_node_ref[current_mask_type].get_child(mask_levels[current_mask_type]).visible = true
 	else:
 		mask_node_ref[current_mask_type].visible = false
-		mask_node_ref[current_mask_type].get_child(mask_levels[current_mask_type]).visible = false
+		for child in mask_node_ref[current_mask_type].get_children():
+			child.visible = false
 
-
-
-func redraw_enemy() -> void:
+func redraw_enemy(level_change: bool = false) -> void:
+	if !level_change:
+		current_mask_type = randi_range(Player.MaskType.ROCK, Player.MaskType.SCISSOR) as Player.MaskType
+		return
 	var min_level : int = 0
 	var max_level : int = 0
 	enemy_level = randi_range(MinionLevel.LV1, MinionLevel.LV3) as MinionLevel
@@ -184,6 +186,7 @@ func redraw_enemy() -> void:
 func _on_enemy_combat_result(result: Player.CombatResult, target: Node2D) -> void:
 	if target != self:
 		return
+	call_deferred("defer_disable")
 	match result:
 		Player.CombatResult.LOSE:
 			match enemy_level:
@@ -198,14 +201,25 @@ func _on_enemy_combat_result(result: Player.CombatResult, target: Node2D) -> voi
 					$Animation.play("boss_hurt")
 					$Animation.play("boss_dead")
 			await $Animation.animation_finished
-			disable_enemy()
+			enable = false
 			$Animation.rotation = 0
 			redraw_enemy()
 			enemy_dead.emit(self)
+			disable_enemy()
 		Player.CombatResult.DRAW:
 			pass
-			# redraw_enemy()
+		Player.CombatResult.WIN:
+			if enemy_level != MinionLevel.BOSS:
+				enemy_level = (enemy_level + 1) as MinionLevel
+				redraw_enemy()
 		_:
 			pass
 	toggle_mask_display(false)
 	state = MinionState.RANDOM
+	call_deferred("defer_disable")
+	$CombatCooler.start()
+
+func _on_combat_cooler_timeout() -> void:
+	if enable:
+		call_deferred("defer_enable")
+	toggle_mask_display(false)
